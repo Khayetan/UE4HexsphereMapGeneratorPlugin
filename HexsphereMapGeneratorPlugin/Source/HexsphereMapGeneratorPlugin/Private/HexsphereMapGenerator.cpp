@@ -275,14 +275,6 @@ void UHexsphereMapGenerator::CreateHexTri(UHexsphereMapData* TargetData, FIcoTri
 		default:
 			break;
 		}
-		// Assign generated data to hex.
-		/*
-		Target.Verts[SideID * 4 + 3] = Vert3;
-
-		Target.Tris[SideID * 6 + 3] = SideID * 4;
-		Target.Tris[SideID * 6 + 4] = SideID * 4 + 2;
-		Target.Tris[SideID * 6 + 5] = SideID * 4 + 3;
-		*/
 
 		// Assign data to main arrays if debug is on.
 		TargetData->Geometry.Verts[SideID * 4 + (A * 24) + 3] = Vert3;
@@ -645,7 +637,6 @@ UHexsphereMapData* UHexsphereMapGenerator::GenerateHexsphereData(FHexsphereMapGe
 {
 	UHexsphereMapData* GeneratedData = NewObject<UHexsphereMapData>();
 
-	//FPlanet Planet = FPlanet();
 	GeneratedData->Resolution = Settings.Resolution;
 	GeneratedData->Radius = Settings.Radius;
 
@@ -673,9 +664,4 @@ UHexsphereMapData* UHexsphereMapGenerator::GenerateHexsphereData(FHexsphereMapGe
 	return GeneratedData;
 }
 
-
-FVector UHexsphereMapGenerator::GetHexLocation(UHexsphereMapData* TargetData, int32 HexID)
-{
-	return TargetData->Geometry.Verts[24 * HexID];
-}
 
