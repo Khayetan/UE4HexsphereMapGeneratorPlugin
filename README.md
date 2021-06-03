@@ -1,5 +1,5 @@
 # UE4HexsphereMapGeneratorPlugin
-An Unreal Engine 4 plugin that adds a hexagon sphere generator. 
+An Unreal Engine 4 plugin that adds a hexagon sphere generator. Compatible with UE4.26.
 This generator used to be a part of a bigger 4X game project I was working on in 2019 that I have since abandoned.
 
 **Features:**
