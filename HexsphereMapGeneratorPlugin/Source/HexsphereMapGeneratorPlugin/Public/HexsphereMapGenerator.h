@@ -8,7 +8,10 @@
 #include "HexsphereMapData.h"
 #include "HexsphereMapGenerator.generated.h"
 
-// Represents one of the verts of an icosahedron.
+
+/**
+ * Represents one of the verts of an icosahedron.
+ */
 USTRUCT()
 struct FIcoVert
 {
@@ -36,8 +39,9 @@ struct FIcoVert
 };
 
 
-
-// An edge of an icosahedron.
+/**
+ * An edge of an icosahedron.
+ */
 USTRUCT()
 struct FIcoEdge
 {
@@ -72,8 +76,9 @@ struct FIcoEdge
 };
 
 
-
-// A triangle of an icosahedron.
+/**
+ * A triangle of an icosahedron.
+ */
 USTRUCT()
 struct FIcoTri
 {
@@ -189,7 +194,9 @@ struct FIcoTri
 };
 
 
-
+/**
+ * Icosahedron model used by the generator.
+ */
 USTRUCT()
 struct FIcoModel
 {
@@ -208,7 +215,7 @@ struct FIcoModel
 
 
 /**
- * 
+ * A generator object that creates all the necessary data for a hexsphere map.
  */
 UCLASS(Blueprintable, BlueprintType)
 class HEXSPHEREMAPGENERATORPLUGIN_API UHexsphereMapGenerator : public UObject
@@ -227,31 +234,31 @@ public:
 
 private:
 
-	// Initial scale of the icosahedron. Changing this may increase or decrease the accuracy of vertex placement.
+	/** Initial scale of the icosahedron. Changing this may increase or decrease the accuracy of vertex placement. */
 	float IcoScale = 1.0f;
-	// The model of an icosahedron used by the generator.
+	/** The model of an icosahedron used by the generator. */
 	FIcoModel IcoModel;
 
-	// Converts coordinates from local triangle 2D space to world.
+	/** Converts coordinates from local triangle 2D space to world. */
 	FVector ConvertCoords(FIcoTri& Tri, FVector2D Input, float Radius);
-	// Creates 1 out of 12 triangles of a single hex. SideID can be used to override the ID of the tri when handling odd hexes.
+	/** Creates 1 out of 12 triangles of a single hex. SideID can be used to override the ID of the tri when handling odd hexes. */
 	void CreateHexTri(UHexsphereMapData* TargetData, FIcoTri& Tri, FHexsphereMapHexagonData& TargetHex, int32 Side, int32 SideID, bool bFirstHalf, FVector2D PointOfRef);
-	// Translates a rotation and makes sure it's not out of bounds.
+	/** Translates a rotation and makes sure it's not out of bounds. */
 	int32 RotHex(int32 OriginalPos, int32 Rotation, bool bIsPenta);
 
-	// Sets 2 hexes as neighbours.
+	/** Sets 2 hexes as neighbours. */
 	void LinkHexes(UHexsphereMapData* TargetData, int32 HexA, int32 HexB, int32 SideA, int32 SideB);
 
 
-	// Creates a model of an icosahedron used during the planet generation process.
+	/** Creates a model of an icosahedron used during the planet generation process. */
 	void BuildIcoModel();
-	// Clears the icosahedron model data. Must be done every generation process to make sure there is no leftover data.
-	void ClearIcoModel();
-	// Initializes all hexagons.
+	/** Clears the icosahedron model data. Must be done every generation process to make sure there is no leftover data. */
+	void ClearIcoModel(); 
+	/** Initializes all hexagons. */
 	void InitHexes(UHexsphereMapData* TargetData);
-	// Builds the geometry of a single ico triangle. 
+	/** Builds the geometry of a single ico triangle. */
 	void BuildTriGeometry(UHexsphereMapData* TargetData, FIcoTri& Tri);
-	// Connects the planet hexagons to eachother by determining which side neighbours which hex and with which sides.
+	/** Connects the planet hexagons to eachother by determining which side neighbours which hex and with which sides. */
 	void BuildTriHexConnections(UHexsphereMapData* TargetData, FIcoTri& Tri);
 
 	void GenerateNormals(UHexsphereMapData* TargetData);

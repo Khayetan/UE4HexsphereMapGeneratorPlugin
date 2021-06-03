@@ -171,13 +171,7 @@ FVector UHexsphereMapGenerator::ConvertCoords(FIcoTri& Tri, FVector2D Input, flo
 	FVector NewLoc = ((Tri.LocalXAxis * Input.X) + (Tri.LocalYAxis * Input.Y) + Tri.LocC);
 	NewLoc.Normalize();
 	NewLoc = NewLoc * Radius;
-	/*
-	// Used for debugging to see how the icosahedron looks.
-	if (bMakeSpherical)
-	{
 
-	}
-	*/
 	return NewLoc;
 };
 
@@ -227,18 +221,6 @@ void UHexsphereMapGenerator::CreateHexTri(UHexsphereMapData* TargetData, FIcoTri
 			break;
 		}
 
-		// Assign data to hex.
-		// Makes no sense for this to be done, duplicates data.
-		/*
-		Target.Verts[SideID * 4] = Vert0;
-		Target.Verts[SideID * 4 + 1] = Vert1;
-		Target.Verts[SideID * 4 + 2] = Vert2;
-
-		Target.Tris[SideID * 6] = SideID * 4;
-		Target.Tris[SideID * 6 + 1] = SideID * 4 + 1;
-		Target.Tris[SideID * 6 + 2] = SideID * 4 + 2;
-		*/
-
 		// Assign data to mesh arrays.
 		TargetData->Geometry.Verts[SideID * 4 + (A * 24)] = Vert0;
 		TargetData->Geometry.Verts[SideID * 4 + (A * 24) + 1] = Vert1;
@@ -276,7 +258,6 @@ void UHexsphereMapGenerator::CreateHexTri(UHexsphereMapData* TargetData, FIcoTri
 			break;
 		}
 
-		// Assign data to main arrays if debug is on.
 		TargetData->Geometry.Verts[SideID * 4 + (A * 24) + 3] = Vert3;
 
 		TargetData->Geometry.Tris[SideID * 6 + (A * 36) + 3] = SideID * 4 + (A * 24);
@@ -471,7 +452,7 @@ void UHexsphereMapGenerator::LinkHexes(UHexsphereMapData* TargetData, int32 HexA
 
 void UHexsphereMapGenerator::BuildTriHexConnections(UHexsphereMapData* TargetData, FIcoTri& Tri)
 {
-	//FIcoTri* t = &IcoTris[0];
+	
 	int32 PyramidCounter = 0;
 	FHexsphereMapHexagonData* Hex;
 	FIcoEdge* EdgeA = &IcoModel.IcoEdges[Tri.EdgeA];

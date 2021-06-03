@@ -86,7 +86,7 @@ struct FHexsphereMapHexagonData
 
 
 /**
- * 
+ * There used to be more settings which made storing them in a struct more convienient.
  */
 USTRUCT(BlueprintType)
 struct FHexsphereMapGenerationSettings

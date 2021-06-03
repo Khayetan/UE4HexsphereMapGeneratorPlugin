@@ -9,7 +9,7 @@
 #include "HexsphereMapComponent.generated.h"
 
 /**
- * 
+ * A mesh component specifically for displaying hexsphere maps.
  */
 UCLASS(Blueprintable, BlueprintType, meta=(BlueprintSpawnableComponent))
 class HEXSPHEREMAPGENERATORPLUGIN_API UHexsphereMapComponent : public UProceduralMeshComponent
@@ -23,9 +23,9 @@ private:
 public:
 	UPROPERTY(BlueprintReadWrite)
 	UHexsphereMapData* HexsphereMapDataSource;
-	UFUNCTION(BlueprintCallable, Category = "Generation")
+	UFUNCTION(BlueprintCallable, Category = "Default")
 	void CreateHexsphereMapMesh();
-	UFUNCTION(BlueprintCallable, Category = "Generation")
+	UFUNCTION(BlueprintCallable, Category = "Default")
 	void UpdateHexsphereMapMesh();
 	
 };
